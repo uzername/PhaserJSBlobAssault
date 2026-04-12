@@ -1,6 +1,6 @@
 # Phaser Vite Template
 
-This is a Phaser 3 project template that uses Vite for bundling. It supports hot-reloading for quick development workflow and includes scripts to generate production-ready builds.
+This is a Phaser 4 project template that uses Vite for bundling. It supports hot-reloading for quick development workflow and includes scripts to generate production-ready builds.
 
 **[This Template is also available as a TypeScript version.](https://github.com/phaserjs/template-vite-ts)**
 
@@ -8,7 +8,7 @@ This is a Phaser 3 project template that uses Vite for bundling. It supports hot
 
 This template has been updated for:
 
-- [Phaser 3.90.0](https://github.com/phaserjs/phaser)
+- [Phaser 4.0.0](https://github.com/phaserjs/phaser)
 - [Vite 6.3.1](https://github.com/vitejs/vite)
 
 ![screenshot](screenshot.png)

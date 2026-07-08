@@ -1,7 +1,9 @@
 import StartGame from './game/main';
 
+var game = null;
+
 document.addEventListener('DOMContentLoaded', () => {
 
-    StartGame('game-container');
+    game = StartGame('game-container');
 
 });

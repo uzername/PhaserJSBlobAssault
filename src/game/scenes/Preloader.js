@@ -33,6 +33,17 @@ export class Preloader extends Scene
         this.load.setPath('assets');
 
         this.load.image('logo', 'logo.png');
+        // Tilemap
+        this.load.tilemapTiledJSON('planetside', 'planetside.tmj');
+
+        // Tilesets
+        this.load.image('floors', 'floors.png');
+        this.load.image('walls', 'walls.png');
+
+        // Drone sprites
+        this.load.image('engineer', 'eng/engineer.png');
+        this.load.image('sec_mk2', 'sec/sec_mk2.png');
+        this.load.image('ert_borg', 'ert/ert_borg.png');
     }
 
     create ()

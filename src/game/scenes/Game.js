@@ -13,11 +13,7 @@ export class Game extends Scene
 
         this.add.image(512, 384, 'background').setAlpha(0.5);
 
-        this.add.text(512, 384, 'Make something fun!\nand share it with us:\nsupport@phaser.io', {
-            fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
-        }).setOrigin(0.5);
+        this.setupMap();
 
         this.input.once('pointerdown', () => {
 
@@ -25,4 +21,44 @@ export class Game extends Scene
 
         });
     }
+    setupMap() {
+
+        const map = this.make.tilemap({
+            key: 'planetside'
+        });
+        // First argument is the name inside Tiled. 
+        // Second argument is the asset key from Preloader.
+        const floorTiles = map.addTilesetImage(
+            'floors_tiles',
+            'floors'
+        );
+        const wallTiles = map.addTilesetImage(
+            'walls_tiles',
+            'walls'
+        );
+
+        const groundLayer = map.createLayer(
+            'BaseFloorLayer',
+            floorTiles
+        );
+        const wallLayer = map.createLayer(
+            'BaseWalls',
+            wallTiles
+        );
+
+        this.physics.world.setBounds(
+            0,
+            0,
+            map.widthInPixels,
+            map.heightInPixels
+        );
+        this.cameras.main.setBounds(
+            0,
+            0,
+            map.widthInPixels,
+            map.heightInPixels
+        );
+
+    }
+
 }

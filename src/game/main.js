@@ -18,6 +18,15 @@ const config = {
     backgroundColor: '#028af8',
     pixelArt: true,
 
+    physics: {
+        default: "arcade",
+        arcade: {
+            gravity: {
+                x: 0
+            }
+        }
+    }, 
+
     scene: [
         Boot,
         Preloader,

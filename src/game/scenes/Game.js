@@ -1,7 +1,10 @@
 import { Scene } from 'phaser';
+import { Player } from '../actor/PlayerActor.js';
 
 export class Game extends Scene
 {
+    player = null;
+    playerXpixel = 0; playerYpixel = 0;
     constructor ()
     {
         super('Game');
@@ -10,8 +13,6 @@ export class Game extends Scene
     create ()
     {
         this.cameras.main.setBackgroundColor(0x00ff00);
-
-        this.add.image(512, 384, 'background').setAlpha(0.5);
 
         this.setupMap();
 
@@ -46,6 +47,12 @@ export class Game extends Scene
             wallTiles
         );
 
+        this.player = new Player(this, this.playerXpixel + UtilClass.SPRITEWIDTH / 2, this.playerYpixel + UtilClass.SPRITEHEIGHT / 2, "engineer_sprites");
+        this.initCamera();
+
+    }
+
+    initCamera() {
         this.physics.world.setBounds(
             0,
             0,
@@ -58,7 +65,7 @@ export class Game extends Scene
             map.widthInPixels,
             map.heightInPixels
         );
-
+        this.cameras.main.startFollow(this.player, true, 1, 1);
     }
 
 }

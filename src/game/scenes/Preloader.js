@@ -41,9 +41,9 @@ export class Preloader extends Scene
         this.load.image('walls', 'walls.png');
 
         // Drone sprites       
-        this.load.spritesheet('engineer_sprites', require("eng/engineer.png"), { frameWidth: 32, frameHeight: 32 });
-        this.load.spritesheet('sec_mk2_sprites', require("sec/sec_mk2.png"), { frameWidth: 32, frameHeight: 32 });
-        this.load.spritesheet('ert_borg_sprites', require('ert/ert_borg.png'), { frameWidth: 32, frameHeight: 32 });
+        this.load.spritesheet('engineer_sprites', "eng/engineer.png", { frameWidth: 32, frameHeight: 32 });
+        this.load.spritesheet('sec_mk2_sprites', "sec/sec_mk2.png", { frameWidth: 32, frameHeight: 32 });
+        this.load.spritesheet('ert_borg_sprites', 'ert/ert_borg.png', { frameWidth: 32, frameHeight: 32 });
     }
 
     create ()

@@ -1,6 +1,6 @@
 import { Scene } from 'phaser';
 import { Player } from '../actor/PlayerActor.js';
-
+import { UtilClass } from '../Utils';
 export class Game extends Scene
 {
     player = null;
@@ -24,26 +24,26 @@ export class Game extends Scene
     }
     setupMap() {
 
-        const map = this.make.tilemap({
+        this.map = this.make.tilemap({
             key: 'planetside'
         });
         // First argument is the name inside Tiled. 
         // Second argument is the asset key from Preloader.
-        const floorTiles = map.addTilesetImage(
+        const floorTiles = this.map.addTilesetImage(
             'floors_tiles',
             'floors'
         );
-        const wallTiles = map.addTilesetImage(
+        const wallTiles = this.map.addTilesetImage(
             'walls_tiles',
             'walls'
         );
 
-        const groundLayer = map.createLayer(
+        const groundLayer = this.map.createLayer(
             'BaseFloorLayer',
             floorTiles
         );
-        const wallLayer = map.createLayer(
-            'BaseWalls',
+        const wallLayer = this.map.createLayer(
+            'BaseWallsLayer',
             wallTiles
         );
 
@@ -52,18 +52,31 @@ export class Game extends Scene
 
     }
 
+    checkIsWall(xPixel, yPixel) {
+        // TODO port from PHASERJS_project
+        return false;
+    }
+    checkIsStoryNPC(xPixel, yPixel) {
+        // TODO port from PHASERJS_project
+        return false;
+    }
+
+    update(time, delta) {
+        this.player.update();
+    }
+
     initCamera() {
         this.physics.world.setBounds(
             0,
             0,
-            map.widthInPixels,
-            map.heightInPixels
+            this.map.widthInPixels,
+            this.map.heightInPixels
         );
         this.cameras.main.setBounds(
             0,
             0,
-            map.widthInPixels,
-            map.heightInPixels
+            this.map.widthInPixels,
+            this.map.heightInPixels
         );
         this.cameras.main.startFollow(this.player, true, 1, 1);
     }

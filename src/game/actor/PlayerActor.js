@@ -1,7 +1,7 @@
 /// https://github.com/photonstorm/phaser3-examples/blob/master/public/src/animation/create%20animation%20from%20sprite%20sheet.js
 import { ActorMain } from './ActorMain';
-import { MessageService } from './MessageService';
-import { UtilClass } from './Utils';
+import { UtilClass } from '../Utils';
+import * as Phaser from 'phaser';
 const inputMode = {
     NONE: 0,
     USE: 1
@@ -25,7 +25,8 @@ export class Player extends ActorMain {
         this.keyBackLeft = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE);
         this.keyFrontLeft = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_SEVEN);
         this.keyFrontRight = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_NINE);
-        
+
+        this.keyUse = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
         this.keyWait = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.PERIOD);
         // camera setup - follow player with camera - is done on scene
     }
@@ -86,32 +87,20 @@ export class Player extends ActorMain {
             }
             this.setFrame(0);
         }
-        if (Phaser.Input.Keyboard.JustDown(this.keyFrontLeft)) {
-            if (this.inputModeCurrent === inputMode.TALK) {
-                this.inputModeCurrent = inputMode.NONE;
-                MessageService.toggleDirectionsDisplay();
-                this.scene.talkToSomeone(this.x - UtilClass.SPRITEWIDTH, this.y - UtilClass.SPRITEHEIGHT);
-            } else {
+        if (Phaser.Input.Keyboard.JustDown(this.keyFrontLeft)) {            
                 // moving to left and front
                 if (!this.scene.checkIsWall(this.x - UtilClass.SPRITEWIDTH, this.y - UtilClass.SPRITEHEIGHT) && !this.scene.checkIsStoryNPC(this.x - UtilClass.SPRITEWIDTH, this.y - UtilClass.SPRITEHEIGHT)) {
                     this.x -= UtilClass.SPRITEWIDTH;
                     this.y -= UtilClass.SPRITEHEIGHT;
                 }
-            }
             this.setFrame(3);
         }
-        if (Phaser.Input.Keyboard.JustDown(this.keyFrontRight)) {
-            if (this.inputModeCurrent === inputMode.TALK) {
-                this.inputModeCurrent = inputMode.NONE;
-                MessageService.toggleDirectionsDisplay();
-                this.scene.talkToSomeone(this.x + UtilClass.SPRITEWIDTH, this.y - UtilClass.SPRITEHEIGHT);
-            } else {
+        if (Phaser.Input.Keyboard.JustDown(this.keyFrontRight)) {            
                 // moving to right and front
                 if (!this.scene.checkIsWall(this.x + UtilClass.SPRITEWIDTH, this.y - UtilClass.SPRITEHEIGHT) && !this.scene.checkIsStoryNPC(this.x + UtilClass.SPRITEWIDTH, this.y - UtilClass.SPRITEHEIGHT)) {
                     this.x += UtilClass.SPRITEWIDTH;
                     this.y -= UtilClass.SPRITEHEIGHT;
                 }
-            }
             this.setFrame(1);
         }
         if (Phaser.Input.Keyboard.JustDown(this.keyUse)) {

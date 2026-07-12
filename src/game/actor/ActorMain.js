@@ -1,4 +1,4 @@
-import Phaser from 'phaser'
+import * as Phaser from 'phaser';
 /// a generic class for game actor
 /// https://shakuro.com/blog/phaser-js-a-step-by-step-tutorial-on-making-a-phaser-3-game
 /// https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Sprite.html
